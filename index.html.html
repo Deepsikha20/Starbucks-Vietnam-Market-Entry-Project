@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starbucks in Vietnam: The Project Phoenix Strategy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            color: white;
+            min-height: 80px;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #4A5568;
+            margin: 0 1rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.75rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #3357FF;
+            border: 4px solid #f0f2f5;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md py-6">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-black text-gray-900">Project Phoenix</h1>
+            <p class="mt-2 text-xl text-gray-600">A Revitalized Market Entry Strategy for Starbucks in Vietnam</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="opportunity" class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">An Arena of Tradition & Transformation</h2>
+                <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">Vietnam's coffee market is a booming, multi-billion dollar industry, yet Starbucks holds less than 3% market share. The opportunity for growth is immense.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="kpi-card">
+                    <h3 class="text-lg font-semibold text-gray-500">Market Value (2023)</h3>
+                    <p class="text-5xl font-black text-[#3357FF] mt-2">$3.5B</p>
+                    <p class="mt-2 text-gray-500">A massive market combining retail, export, and a vibrant café culture.</p>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="text-lg font-semibold text-gray-500">Projected CAGR</h3>
+                    <p class="text-5xl font-black text-[#FF5733] mt-2">8.2%</p>
+                    <p class="mt-2 text-gray-500">Fueled by rising incomes and a young, dynamic urban population.</p>
+                </div>
+                <div class="kpi-card md:col-span-2 lg:col-span-1">
+                    <h3 class="text-lg font-semibold text-gray-500">Starbucks' Market Share</h3>
+                    <p class="text-5xl font-black text-[#FF33A1] mt-2">&lt;3%</p>
+                    <p class="mt-2 text-gray-500">A stark underperformance indicating a major strategic disconnect.</p>
+                </div>
+            </div>
+            <div class="mt-12 bg-white rounded-lg shadow-md p-6">
+                 <h3 class="text-2xl font-bold text-center mb-4">Domestic Consumption on the Rise</h3>
+                 <p class="text-center text-gray-600 mb-6">Local demand is forecast to grow significantly, reflecting a thriving café society that Starbucks is currently missing.</p>
+                <div class="chart-container">
+                    <canvas id="consumptionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="competitors" class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">The Competitive Gauntlet</h2>
+                <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">Local giants have mastered the market by blending cultural authenticity with modern appeal, leaving Starbucks isolated.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4">Branded Chain Store Count</h3>
+                    <p class="text-center text-gray-600 mb-6">Local players achieve massive scale through diverse strategies like franchising and retail integration.</p>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="storeCountChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4">Strategic Positioning Map</h3>
+                    <p class="text-center text-gray-600 mb-6">Starbucks is stuck in a high-price, foreign-experience niche, while winners bridge the gap between experience and accessibility.</p>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="positioningMap"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="diagnosis" class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">A Critical Diagnosis: The Triad of Disconnect</h2>
+                <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">Starbucks' underperformance stems from a fundamental failure to adapt its core value proposition.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="kpi-card">
+                    <div class="text-5xl mb-4">💰</div>
+                    <h3 class="text-2xl font-bold text-[#FF5733]">Price</h3>
+                    <p class="mt-2 text-gray-600">Positioned as an inaccessible luxury, costing up to 2.5x more than popular local chains, making it an occasional treat, not a daily habit.</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="text-5xl mb-4">☕</div>
+                    <h3 class="text-2xl font-bold text-[#3357FF]">Product</h3>
+                    <p class="mt-2 text-gray-600">A menu centered on mild Arabica beans fails to resonate with a nation that prefers the strong, bold flavor of Robusta coffee.</p>
+                </div>
+                <div class="kpi-card">
+                     <div class="text-5xl mb-4">📍</div>
+                    <h3 class="text-2xl font-bold text-[#33FF57]">Place</h3>
+                    <p class="mt-2 text-gray-600">The standardized "Third Place" concept doesn't align with the local culture of spacious, leisurely, and communal café gatherings.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategy" class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">The Phoenix Strategy: A Blueprint for Renewal</h2>
+                <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">A four-pronged approach to move from brand transplant to deep market integration.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-4">1. The "Dual-Stream" Product Strategy</h3>
+                <p class="mb-6 text-gray-600">Embrace local taste while celebrating global heritage. This strategy shifts Starbucks from ignoring Robusta to championing it at a premium level.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center">
+                    <div class="flex-1 text-center p-4 border-2 border-dashed border-gray-300 rounded-lg m-2">
+                        <h4 class="font-bold text-lg text-[#3357FF]">Stream A: "Reserve Vietnam Robusta"</h4>
+                        <p>A premium line featuring high-quality, locally sourced Robusta beans, creating authentic, high-end versions of traditional drinks like *Cà Phê Sữa Đá*.</p>
+                    </div>
+                    <div class="text-4xl font-black text-gray-400 mx-4">+</div>
+                    <div class="flex-1 text-center p-4 border-2 border-dashed border-gray-300 rounded-lg m-2">
+                        <h4 class="font-bold text-lg text-[#33FF57]">Stream B: Curated Global Menu</h4>
+                        <p>The classic Arabica menu, enhanced with popular local flavors like coconut and pandan, catering to modern tastes and tourists.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-4">2. Tiered Store & Pricing Architecture</h3>
+                <p class="mb-6 text-gray-600">Break the high-cost, low-accessibility paradox with a multi-format store strategy that competes on both experience and convenience.</p>
+                 <div class="w-full max-w-md mx-auto">
+                    <div class="relative pt-1">
+                        <div class="flow-step bg-[#3357FF] mb-2 shadow-lg">Flagship "Reserve" Stores</div>
+                        <p class="text-center text-sm text-gray-600 mb-4">Premium, experiential hubs in prime locations offering the full "Vietnam Robusta" line at a premium price.</p>
+                        <div class="flow-step bg-[#FF5733] shadow-lg">"Starbucks Connect" Kiosks</div>
+                        <p class="text-center text-sm text-gray-600">Small-footprint, lower-cost kiosks in high-traffic areas focusing on speed, convenience, and a more accessible price point.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <h3 class="text-2xl font-bold mb-4">3. Reclaiming the "Third Place"</h3>
+                    <p class="text-gray-600">Shift from a generic global aesthetic to a genuinely local community hub through store design that uses local art and materials, and by hosting cultural events and workshops.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <h3 class="text-2xl font-bold mb-4">4. A New Marketing Narrative</h3>
+                    <p class="text-gray-600">Change the message from "bringing you our coffee" to "celebrating and elevating your coffee," positioning Starbucks as a partner in Vietnam's rich coffee heritage.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">3-Year Implementation Roadmap</h2>
+                <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">A phased approach to build foundation, expand, and achieve market leadership.</p>
+            </div>
+            <div class="relative pl-12">
+                <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-300"></div>
+                <div class="mb-12 timeline-item">
+                    <h4 class="font-bold text-xl text-[#FF5733]">Year 1: Foundation & Pilot</h4>
+                    <ul class="list-disc list-inside text-gray-600 mt-2">
+                        <li>Establish partnerships with high-quality Robusta farms.</li>
+                        <li>Launch first flagship "Reserve" store in HCMC.</li>
+                        <li>Roll out 10 pilot "Connect" kiosks.</li>
+                        <li>Initiate "Celebrate Vietnam Robusta" marketing campaign.</li>
+                    </ul>
+                </div>
+                <div class="mb-12 timeline-item">
+                    <h4 class="font-bold text-xl text-[#F1C40F]">Year 2: Expansion & Optimization</h4>
+                    <ul class="list-disc list-inside text-gray-600 mt-2">
+                        <li>Expand "Reserve" stores to 5-7 locations.</li>
+                        <li>Scale "Connect" kiosks to 50+ locations.</li>
+                        <li>Launch revamped loyalty program.</li>
+                        <li>Formalize community engagement programs.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="font-bold text-xl text-[#33FF57]">Year 3: Market Penetration</h4>
+                    <ul class="list-disc list-inside text-gray-600 mt-2">
+                        <li>Grow "Connect" network to 100+ locations.</li>
+                        <li>Achieve critical mass in key urban markets.</li>
+                        <li>Launch national marketing campaign.</li>
+                        <li>Begin exporting "Reserve Vietnam Robusta" beans.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="outlook" class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">Measuring Success: Outlook & KPIs</h2>
+                <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">The goal is tangible growth in market share, profitability, and brand perception.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center">
+                    <h3 class="text-2xl font-bold text-center mb-4">Target Market Share Growth</h3>
+                    <p class="text-center text-gray-600 mb-6">Increase share of the branded coffee chain segment from under 3% to over 7% by the end of Year 3.</p>
+                    <div class="chart-container h-64">
+                        <canvas id="marketShareChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-6">Key Performance Indicators</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-green-500 font-bold text-xl mr-3">✔</span>
+                            <div>
+                                <h4 class="font-semibold">Store Network Growth</h4>
+                                <p class="text-gray-600 text-sm">100+ "Connect" Kiosks & 10-12 "Reserve" Stores.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 font-bold text-xl mr-3">✔</span>
+                            <div>
+                                <h4 class="font-semibold">Improved Profitability</h4>
+                                <p class="text-gray-600 text-sm">Higher blended store-level EBITDA margin across the tiered system.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 font-bold text-xl mr-3">✔</span>
+                            <div>
+                                <h4 class="font-semibold">Enhanced Brand Perception</h4>
+                                <p class="text-gray-600 text-sm">Improved scores for "Value," "Authenticity," and Net Promoter Score (NPS).</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Project Phoenix Strategic Analysis. All data synthesized from market research for illustrative purposes.</p>
+            <p class="text-xs text-gray-400 mt-2">This infographic was generated based on the "Project Phoenix" report. No SVG or Mermaid JS was used in its creation.</p>
+        </div>
+    </footer>
+
+    <script>
+        function wrapLabel(label, maxWidth) {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + words[i].length + 1 < maxWidth) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const sharedTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        const consumptionData = {
+            labels: ['2024/25', '2025/26'],
+            datasets: [{
+                label: 'Domestic Consumption (Million 60kg Bags)',
+                data: [4.0, 4.9],
+                backgroundColor: 'rgba(51, 87, 255, 0.2)',
+                borderColor: 'rgba(51, 87, 255, 1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4
+            }]
+        };
+        new Chart(document.getElementById('consumptionChart'), {
+            type: 'line',
+            data: consumptionData,
+            options: { ...sharedTooltipOptions, maintainAspectRatio: false }
+        });
+
+        const storeCountData = {
+            labels: ['Trung Nguyen E-Coffee', 'Phuc Long (Kiosks)', 'Highlands Coffee', 'Starbucks'],
+            datasets: [{
+                label: 'Approximate Store Count',
+                data: [800, 900, 230, 108],
+                backgroundColor: ['#3357FF', '#FF5733', '#F1C40F', '#FF33A1'],
+                borderColor: ['#3357FF', '#FF5733', '#F1C40F', '#FF33A1'],
+                borderWidth: 1
+            }]
+        };
+        new Chart(document.getElementById('storeCountChart'), {
+            type: 'bar',
+            data: storeCountData,
+            options: {
+                ...sharedTooltipOptions,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        const positioningData = {
+            datasets: [{
+                label: 'Highlands Coffee',
+                data: [{ x: 6, y: 7 }],
+                backgroundColor: '#F1C40F',
+                pointRadius: 15,
+                pointHoverRadius: 20
+            }, {
+                label: 'Trung Nguyen / Phuc Long',
+                data: [{ x: 5, y: 5 }],
+                backgroundColor: '#FF5733',
+                pointRadius: 15,
+                pointHoverRadius: 20
+            }, {
+                label: 'Starbucks',
+                data: [{ x: 9, y: 8 }],
+                backgroundColor: '#FF33A1',
+                pointRadius: 15,
+                pointHoverRadius: 20
+            }, {
+                label: 'Street-side Vendors',
+                data: [{ x: 2, y: 2 }],
+                backgroundColor: '#cccccc',
+                pointRadius: 15,
+                pointHoverRadius: 20
+            }]
+        };
+        new Chart(document.getElementById('positioningMap'), {
+            type: 'scatter',
+            data: positioningData,
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        min: 0, max: 10,
+                        title: { display: true, text: 'Price / Perceived Quality →' }
+                    },
+                    y: {
+                        min: 0, max: 10,
+                        title: { display: true, text: 'Store Experience →' }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) { return context.dataset.label; }
+                        }
+                    },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        const marketShareData = {
+            labels: ['Rest of Market', 'Starbucks Target'],
+            datasets: [{
+                data: [93, 7],
+                backgroundColor: ['#E5E7EB', '#33FF57'],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(document.getElementById('marketShareChart'), {
+            type: 'doughnut',
+            data: marketShareData,
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: true, position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                           label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
