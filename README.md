@@ -2,7 +2,7 @@ Project Phoenix: An Interactive Strategy Report for Starbucks in Vietnam
 This repository contains the source code for a single-page interactive web application that visualizes the "Project Phoenix" market entry and growth strategy for Starbucks in Vietnam.
 
 Live Demo
-You can view the live, interactive report here: https://your-username.github.io/your-repo-name/
+You can view the live, interactive report here: [https://your-username.github.io/your-repo-name/](https://deepsikha20.github.io/Starbucks-Vietnam-Market-Entry-Project/)
 
 
 Project Overview
